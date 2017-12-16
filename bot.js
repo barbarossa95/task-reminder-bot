@@ -26,11 +26,12 @@
         // Set up webhook
         this.botApi.setWebHook(`${this.url}/bot${this.telegramBotToken}`);
 
-        this.botApi.onText(/\/start/, cmdStart);
+        this.botApi.onText(/\/start/, this.cmdStart);
     }
 
     cmdStart(msg) {
-        this.botApi.sendMessage(msg.chat.id, "Greetings, dude\nI'm here to help you");
+        console.log(this);
+        //this.botApi.sendMessage(msg.chat.id, "Greetings, dude\nI'm here to help you");
     }
  }
 
