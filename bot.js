@@ -30,9 +30,7 @@
     }
 
     cmdStart(msg) {
-        console.log(this);
-        console.log(msg);
-        //this.botApi.sendMessage(msg.chat.id, "Greetings, dude\nI'm here to help you");
+        this.botApi.sendMessage(msg.chat.id, "Greetings, dude\nI'm here to help you");
     }
  }
 
