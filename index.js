@@ -17,8 +17,8 @@ const TaskReminderBot = require('./bot');
 
 let options = {
     telegramBotToken,
-    port,
     url,
+    port
 };
 
 // Bot instance
