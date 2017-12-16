@@ -26,7 +26,7 @@
         // Set up webhook
         this.botApi.setWebHook(`${this.url}/bot${this.telegramBotToken}`);
 
-        this.botApi.onText(/\/start/, this.cmdStart);
+        this.botApi.onText(/\/start/, cmdStart);
     }
 
     cmdStart(msg) {
