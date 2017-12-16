@@ -6,5 +6,20 @@
  *
  * Bot index file
  */
-let TaskReminderBot = require('./bot'),
-    bot = new TaskReminderBot();
+
+const telegramBotToken = process.env.TELEGRAM_BOT_API_TOKEN || '425725110:AAGGCMmtY8jPzmB6hwsCNVvjT8m4Mt2nrBY';
+// Webhook port
+const port = process.env.PORT || 443;
+// Webhook url
+const url = process.env.APP_URL || 'https://glacial-shelf-62769.herokuapp.com';
+// Our bot class
+const TaskReminderBot = require('./bot');
+
+let options = {
+    telegramBotToken,
+    port,
+    url,
+};
+
+// Bot instance
+const bot = new TaskReminderBot(options);
