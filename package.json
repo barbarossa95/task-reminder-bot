@@ -1,0 +1,20 @@
+{
+  "name": "task-reminder-bot",
+  "version": "1.0.0",
+  "description": "Telegram bot for remind her subscribers about tasks",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "reminder",
+    "task",
+    "telegram",
+    "bot"
+  ],
+  "author": "V.Greshilov",
+  "license": "ISC",
+  "dependencies": {
+    "node-telegram-bot-api": "^0.29.0"
+  }
+}
