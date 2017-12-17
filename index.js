@@ -12,13 +12,16 @@ const telegramBotToken = process.env.TELEGRAM_BOT_API_TOKEN || '425725110:AAGGCM
 const port = process.env.PORT || 443;
 // Webhook url
 const url = process.env.APP_URL || 'https://glacial-shelf-62769.herokuapp.com';
+// Mongo db connection uri
+const mongoUri = process.env.APP_URL || "mongodb://heroku_q6tk00h5:kdl956cponc3b8al8fbt2kdc21@ds059546.mlab.com:59546/heroku_q6tk00h5";
 // Our bot class
 const TaskReminderBot = require('./bot');
 
 let options = {
     telegramBotToken,
     url,
-    port
+    port,
+    mongoUri
 };
 
 // Bot instance
