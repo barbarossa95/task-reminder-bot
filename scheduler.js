@@ -8,14 +8,9 @@
 
 class Scheduler {
     // Scheduler constuctor
-    constuctor (options) {
-        console.log('Scheduler constuctor started');
-        let mongolabUri = process.env.MONGOLAB_URI;
-        console.log('MONGOLAB_URI=' + mongolabUri);
-        this.mongolabUri = mongolabUri;
+    constuctor () {
+        this.mongolabUri = process.env.MONGOLAB_URI;
         this.MongoClient = require('mongodb').MongoClient;
-        console.log('Scheduler constuctor done');
-        console.log(this);
     }
 
     job () {
@@ -44,8 +39,6 @@ class Scheduler {
     }
 
     start () {
-        console.log('Start call');
-        console.log(this);
         this.timeInterval = setInterval(this.job.bind(this), 5000);
     }
 
