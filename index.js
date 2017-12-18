@@ -3,7 +3,6 @@
  *
  * Created by V.Greshilov at 16.12.2017
  *
- *
  * Bot index file
  */
 
