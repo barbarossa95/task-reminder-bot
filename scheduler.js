@@ -9,9 +9,10 @@
 class Scheduler {
     // Scheduler constructor
     constructor () {
-        console.log("Scheduler constructor");
         this.mongolabUri = process.env.MONGOLAB_URI;
         this.MongoClient = require('mongodb').MongoClient;
+        console.log("this.mongolabUri=" + this.mongolabUri);
+
     }
 
     job () {
