@@ -14,7 +14,8 @@ class Scheduler {
     }
 
     job () {
-        this.MongoClient.connect(this.mongolabUri, function (err, client) {
+        console.log(this);
+        /*this.MongoClient.connect(this.mongolabUri, function (err, client) {
             if (err) return;
             console.log("Conneted to mongo db");
             const db = client.db;
@@ -32,7 +33,8 @@ class Scheduler {
                 ? console.log('inserted one documet')
                 : console.log(err);
             });
-        })
+        });
+        */
     }
 
     start () {
