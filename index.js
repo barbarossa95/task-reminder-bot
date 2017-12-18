@@ -25,6 +25,5 @@ let options = {
 // Bot instance
 const bot       = new TaskReminderBot(options);
 // Scheduler instance
-const scheduler = new Scheduler();
+const scheduler = new Scheduler(options);
 scheduler.start();
-console.log('scheduler started');

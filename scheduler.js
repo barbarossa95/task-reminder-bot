@@ -8,7 +8,7 @@
 
 class Scheduler {
     // Scheduler constuctor
-    constuctor () {
+    constuctor (options) {
         console.log('Scheduler constuctor started');
         let mongolabUri = process.env.MONGOLAB_URI;
         console.log('MONGOLAB_URI=' + mongolabUri);
