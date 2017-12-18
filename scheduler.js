@@ -44,4 +44,4 @@ class Scheduler {
     }
 }
 
-module.exports = Sheduler;
+module.exports = Scheduler;
