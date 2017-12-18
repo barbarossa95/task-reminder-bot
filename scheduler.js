@@ -9,14 +9,12 @@
 class Scheduler {
     // Scheduler constructor
     constructor () {
-        this.mongolabUri = process.env.MONGOLAB_URI;
+        this.mongoDbUri = process.env.MONGODB_URI;
         this.MongoClient = require('mongodb').MongoClient;
-        console.log("this.mongolabUri=" + this.mongolabUri);
-
     }
 
     job () {
-        this.MongoClient.connect(this.mongolabUri, function (err, client) {
+        this.MongoClient.connect(this.mongoDbUri, function (err, client) {
             if (err) return;
             console.log("Conneted to mongo db");
             const db = client.db;
