@@ -3,7 +3,6 @@
  *
  * Created by V.Greshilov at 16.12.2017
  *
- *
  * Bot index file
  */
 
@@ -16,6 +15,8 @@ const url = process.env.APP_URL || 'https://glacial-shelf-62769.herokuapp.com';
 const mongoUri = process.env.APP_URL || "mongodb://heroku_q6tk00h5:kdl956cponc3b8al8fbt2kdc21@ds059546.mlab.com:59546/heroku_q6tk00h5";
 // Our bot class
 const TaskReminderBot = require('./bot');
+// Our scheluder class
+const Scheduler = require('./scheduler');
 
 let options = {
     telegramBotToken,
@@ -25,4 +26,7 @@ let options = {
 };
 
 // Bot instance
-const bot = new TaskReminderBot(options);
+const bot       = new TaskReminderBot(options);
+// Scheduler instance
+const scheduler = new Scheduler();
+scheduler.start();
