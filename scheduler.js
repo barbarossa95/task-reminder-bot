@@ -6,7 +6,7 @@
  * Class for running sendings sheduled messages to users
  */
 
-class Sheduler {
+class Scheduler {
     // Scheduler constuctor
     constuctor () {
         this.mongolabUri = process.env.MONGOLAB_URI;
