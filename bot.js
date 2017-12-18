@@ -8,7 +8,7 @@
 
  class Bot {
     // Bot Constuctor
-    constructor(options) {
+    constructor (options) {
         let TelegramBotApi = require('node-telegram-bot-api');
 
         // Init props
@@ -29,7 +29,7 @@
         this.botApi.onText(/\/start/, this.cmdStart.bind(this));
     }
 
-    cmdStart(msg) {
+    cmdStart (msg) {
         this.botApi.sendMessage(msg.chat.id, "Greetings, dude\nI'm here to help you");
     }
  }
