@@ -6,9 +6,10 @@
  * Bot main file
  */
 
- class Bot {
+class Bot {
     // Bot Constuctor
     constructor (options) {
+        console.log("Bot constuctor");
         let TelegramBotApi = require('node-telegram-bot-api');
 
         // Init props

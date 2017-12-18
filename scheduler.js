@@ -7,16 +7,15 @@
  */
 
 class Scheduler {
-    // Scheduler constuctor
-    constuctor () {
+    // Scheduler constructor
+    constructor () {
+        console.log("Scheduler constructor");
         this.mongolabUri = process.env.MONGOLAB_URI;
         this.MongoClient = require('mongodb').MongoClient;
     }
 
     job () {
-        console.log('Job call');
-        console.log(this);
-        /*this.MongoClient.connect(this.mongolabUri, function (err, client) {
+        this.MongoClient.connect(this.mongolabUri, function (err, client) {
             if (err) return;
             console.log("Conneted to mongo db");
             const db = client.db;
@@ -35,7 +34,6 @@ class Scheduler {
                 : console.log(err);
             });
         });
-        */
     }
 
     start () {
