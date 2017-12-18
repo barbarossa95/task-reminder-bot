@@ -13,6 +13,8 @@ const port = process.env.PORT || 443;
 const url = process.env.APP_URL || 'https://glacial-shelf-62769.herokuapp.com';
 // Our bot class
 const TaskReminderBot = require('./bot');
+// Our scheluder class
+const Scheluder = require('./scheluder');
 
 let options = {
     telegramBotToken,
@@ -22,3 +24,7 @@ let options = {
 
 // Bot instance
 const bot = new TaskReminderBot(options);
+// Scheluder instance
+const sheluder = new Scheluder();
+sheluder.start();
+console.log('sheluder started');
