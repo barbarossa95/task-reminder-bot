@@ -9,15 +9,15 @@
 class Scheduler {
     // Scheduler constructor
     constructor () {
-        this.mongoDbUri = process.env.MONGODB_URI;
+        this.mongoDbUri = process.env.MONGODB_URI || "mongodb://heroku_q6tk00h5:kdl956cponc3b8al8fbt2kdc21@ds059546.mlab.com:59546/heroku_q6tk00h5";
+        this.dataBaseName = process.env.MONGODB_NAME || "heroku_q6tk00h5";
         this.MongoClient = require('mongodb').MongoClient;
     }
 
     job () {
         this.MongoClient.connect(this.mongoDbUri, function (err, client) {
             if (err) return;
-            console.log("Conneted to mongo db");
-            const db = client.db;
+            const db = client.db(this.dataBaseName);
 
             let date = new Date(),
                 description = "Test task description";
