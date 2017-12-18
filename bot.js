@@ -27,9 +27,7 @@
         this.botApi.setWebHook(`${this.url}/bot${this.telegramBotToken}`);
 
         this.botApi.onText(/\/start/, this.cmdStart.bind(this));
-
-        this.MongoClient = require('mongodb').MongoClient;
-    }
+   }
 
     cmdStart (msg) {
         this.botApi.sendMessage(msg.chat.id, "Greetings, dude\nI'm here to help you");
