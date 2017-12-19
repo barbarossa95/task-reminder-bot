@@ -8,9 +8,16 @@
 
 class DbController {
     constructor (mongoDbUri, dataBaseName) {
+        console.log("Init DbController");
         this.mongoDbUri = mongoDbUri;
         this.dataBaseName = dataBaseName;
         this.MongoClient = require('mongodb').MongoClient;
+        this.MongoClient.connect(this.mongoDbUri, (err, client) => {
+            //init storage
+            client.db(this.dataBaseName).createCollection('tasks');
+            client.db(this.dataBaseName).createCollection('chats');
+        });
+
     }
 
     saveTask (task) {
@@ -19,7 +26,7 @@ class DbController {
                 if (err) reject(err);
                 const db = client.db(this.dataBaseName);
 
-                db.tasks.insertOne(task);
+                db.collection('tasks').insertOne(task);
                 client.close();
                 resolve()
             });
@@ -32,7 +39,7 @@ class DbController {
                 if (err) reject(err);
                 const db = client.db(this.dataBaseName);
 
-                let chat = db.chats.find({ username : username });
+                let chat = db.collection('chats').find({ username : username });
                 if (!chat) reject(null);
                 client.close();
                 resolve(chat);
@@ -46,7 +53,7 @@ class DbController {
                 if (err) reject(err);
                 const db = client.db(this.dataBaseName);
 
-                db.tasks.deleteOne({"_id" : task._id});
+                db.collection('tasks').deleteOne({"_id" : task._id});
                 client.close();
                 resolve();
             });
@@ -60,7 +67,7 @@ class DbController {
                 if (err) reject(err);
                 const db = client.db(this.dataBaseName);
 
-                let tasks = db.tasks
+                let tasks = db.collection('tasks')
                     .find({ expectedDate : { $gte : new Date() }}).toArray();
                 client.close();
                 resolve(tasks);
@@ -74,7 +81,7 @@ class DbController {
                 if (err) reject(err);
                 const db = client.db(this.dataBaseName);
 
-                db.chats.insertOne(chat);
+                db.collection('chats').insertOne(chat);
                 client.close();
                 resolve();
             });
