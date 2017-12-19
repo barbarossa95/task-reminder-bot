@@ -8,26 +8,37 @@
 
 class Scheduler {
     // Scheduler constructor
-    constructor (taskController, botController) {
-        this.taskController = taskController;
+    constructor (dbController, botController) {
+        this.dbController = dbController;
         this.botController = botController;
+        this.timeInterval = null;
     }
 
     job () {
-        this.taskController.getReadyTasks(function (tasks) {
-            tasks.forEach(function (task) {
-                this.botController.notyfy(task);
-                this.taskController.remove(task);
+        this.dbController.getReadyTasks()
+            .then((tasks) => {
+                tasks.forEach((task) => {
+                    this.botController.sendTask(task);
+                    this.dbController.remove(task);
+                });
             });
+
+        this.dbController.getReadyTasks((tasks) => {
+
         })
     }
 
     start () {
-        this.timeInterval = setInterval(this.job.bind(this), 5000);
+        if (!this.timeInterval) {
+            this.timeInterval = setInterval(this.job.bind(this), (process.env.SCHEDULER_INTERVAL || 5000);
+        }
     }
 
     stop () {
-        clearInterval(this.timeInterval);
+        if (this.timeInterval) {
+            clearInterval(this.timeInterval);
+            this.timeInterval = null;
+        }
     }
 }
 
