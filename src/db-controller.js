@@ -65,10 +65,10 @@ class DbController {
                 client.close();
                 resolve(tasks);
             });
-        };
+        });
     }
 
-    saveChat (chat)) {
+    saveChat (chat) {
         return new Promise((resolve, reject) => {
             this.MongoClient.connect(this.mongoDbUri, (err, client) => {
                 if (err) reject(err);
@@ -76,8 +76,9 @@ class DbController {
 
                 db.chats.insertOne(chat);
                 client.close();
+                resolve();
             });
-        };
+        });
     }
 }
 

@@ -30,7 +30,7 @@ class Scheduler {
 
     start () {
         if (!this.timeInterval) {
-            this.timeInterval = setInterval(this.job.bind(this), (process.env.SCHEDULER_INTERVAL || 5000);
+            this.timeInterval = setInterval(this.job.bind(this), (process.env.SCHEDULER_INTERVAL || 5000));
         }
     }
 

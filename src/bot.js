@@ -59,7 +59,7 @@ class TaskReminderBot extends EventEmitter {
     }
 
     cmdCreateTasks (msg, match) {
-        let task {
+        let task = {
             username: match[1],
             expectedDate: new Date(match[2]),
             description: match[8],
