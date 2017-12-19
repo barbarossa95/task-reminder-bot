@@ -20,14 +20,12 @@ class Scheduler {
             .then((tasks) => {
                 console.log("Scheduler job running, tasks count: " + tasks.length)
                 tasks.forEach((task) => {
-                    this.botController.sendTask(task);
-                    this.dbController.remove(task);
+                    this.botController.sendTask(task)
+                    .then(() => this.dbController.remove(task))
+                    .then(() => console.log('task was sended and removed'))
+                    .catch((err) => console.error(err))
                 });
             });
-
-        this.dbController.getReadyTasks((tasks) => {
-
-        })
     }
 
     start () {
