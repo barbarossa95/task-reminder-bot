@@ -9,6 +9,7 @@
 class Scheduler {
     // Scheduler constructor
     constructor (dbController, botController) {
+        console.log("Init Scheduler");
         this.dbController = dbController;
         this.botController = botController;
         this.timeInterval = null;
@@ -17,6 +18,7 @@ class Scheduler {
     job () {
         this.dbController.getReadyTasks()
             .then((tasks) => {
+                console.log("Scheduler job running, tasks count: " + tasks.length)
                 tasks.forEach((task) => {
                     this.botController.sendTask(task);
                     this.dbController.remove(task);
@@ -31,6 +33,7 @@ class Scheduler {
     start () {
         if (!this.timeInterval) {
             this.timeInterval = setInterval(this.job.bind(this), (process.env.SCHEDULER_INTERVAL || 5000));
+            console.log("Scheduler started");
         }
     }
 
@@ -38,6 +41,7 @@ class Scheduler {
         if (this.timeInterval) {
             clearInterval(this.timeInterval);
             this.timeInterval = null;
+            console.log("Scheduler stoped");
         }
     }
 }
