@@ -46,7 +46,9 @@ class TaskReminderBot extends EventEmitter {
 
     cmdStart (msg) {
         this.botApi.sendMessage(msg.chat.id, "Greetings, dude\nI'm here to help you");
-        this.dbController.saveChat(chat);
+        this.dbController.saveChat(chat)
+            .then(() => console.log("New chat"))
+            .catch((err) => console.error(err));
     }
 
     cmdChatId(msg) {
@@ -62,6 +64,7 @@ class TaskReminderBot extends EventEmitter {
     }
 
     cmdCreateTasks (msg, match) {
+        // console.log(match);
         let task = {
             username: match[1],
             expectedDate: new Date(match[2]),
@@ -76,11 +79,15 @@ class TaskReminderBot extends EventEmitter {
     }
 
     sendTask (task) {
-        let message = `Time OUT\n
+        return new Promise((resolve, reject) => {
+            if (!task.chat || !task.chat.id) reject(new Error("Unable to send task - chat is undefined"));
+            let message = `Time OUT\n
                        Task: ${task.description}\n
                        Assigned at: @${task.username}\n
                        Complete time: ${task.expectedDate}`;
-        this.botApi.sendMessage(task.chat.id, message);
+            this.botApi.sendMessage(task.chat.id, message);
+            resolve();
+        });
     }
  }
 
