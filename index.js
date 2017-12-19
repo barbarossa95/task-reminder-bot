@@ -27,12 +27,15 @@ const TaskReminderBot = require('./src/bot');
 // Our scheluder class
 const Scheduler = require('./src/scheduler');
 // Our task controller class
-const TaskController = require('./src/task-controller');
+const DbController = require('./src/db-controller');
 
 // Task controller
-const taskController = new TaskController(mongoUri, dataBaseName);
+const dbController      = new DbController(mongoUri, dataBaseName);
 // Bot instance
-const bot       = new TaskReminderBot(options, taskController);
+const bot               = new TaskReminderBot(options, dbController);
 // Scheduler instance
-const scheduler = new Scheduler(taskController, bot);
+const scheduler         = new Scheduler(dbController, bot);
+
+bot.on('onStartSchedulerCommand', scheduler.start);
+bot.on('onStopSchedulerCommand', scheduler.stop);
 scheduler.start();
