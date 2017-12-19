@@ -11,6 +11,8 @@ const EventEmitter = require('events');
 class TaskReminderBot extends EventEmitter {
     // Bot Constuctor
     constructor(options, dbController) {
+        //must call super for "this" to be defined.
+        super();
         const TelegramBotApi = require('node-telegram-bot-api');
 
         // Init props
