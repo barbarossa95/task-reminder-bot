@@ -25,13 +25,13 @@ class TaskReminderBot extends EventEmitter {
 
         // Init botApi
         this.botApi = new TelegramBotApi(this.telegramBotToken, {
-        /*    webHook: {
+            webHook: {
                 port: this.port
-            }*/
+            }
         });
 
         // Set up webhook
-        //this.botApi.setWebHook(`${this.url}/bot${this.telegramBotToken}`);
+        this.botApi.setWebHook(`${this.url}/bot${this.telegramBotToken}`);
 
         this.botApi.onText(/\/start/, this.cmdStart.bind(this));
 
