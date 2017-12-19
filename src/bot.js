@@ -6,9 +6,11 @@
  * Bot main file
  */
 
-class TaskReminderBot {
+const EventEmitter = require('events');
+
+class TaskReminderBot extends EventEmitter {
     // Bot Constuctor
-    constructor(options, taskController) {
+    constructor(options, dbController) {
         const TelegramBotApi = require('node-telegram-bot-api');
 
         // Init props
@@ -16,7 +18,7 @@ class TaskReminderBot {
         this.port = options.port;
         this.url = options.url;
 
-        this.taskController = taskController;
+        this.dbController = dbController;
 
         // Init botApi
         this.botApi = new TelegramBotApi(this.telegramBotToken, {
@@ -30,33 +32,52 @@ class TaskReminderBot {
 
         this.botApi.onText(/\/start/, this.cmdStart.bind(this));
 
+        this.botApi.onText(/\/start-scheduler/, this.cmdStartScheduler.bind(this));
+
+        this.botApi.onText(/\/stop-scheduler/, this.cmdStopScheduler.bind(this));
+
         this.botApi.onText(/\/chat-id/, this.cmdChatId.bind(this));
 
-        this.botApi.onText(/(\/creata-task) ((\d{2})\.(\d{2})\.(\d{4}) (\d{2}):(\d{2})) (.+)/, this.cmdCreateTasks.bind(this));
+        this.botApi.onText(/(\/create-task) (@\w{5,}) ((\d{2})\.(\d{2})\.(\d{4}) (\d{2}):(\d{2})) (.+)/, this.cmdCreateTasks.bind(this));
    }
 
     cmdStart (msg) {
         this.botApi.sendMessage(msg.chat.id, "Greetings, dude\nI'm here to help you");
-        this.taskController.saveChat(chat);
-    }
-
-    notyfy(taks) {
-        this.botApi.sendMessage(task.user.)
+        this.dbController.saveChat(chat);
     }
 
     cmdChatId(msg) {
         this.botApi.sendMessage(msg.chat.id, "Current chat_id is " + msg.chat.id);
     }
 
+    cmdStartScheduler() {
+        this.emit('onStartSchedulerCommand');
+    }
+
+    cmdStopScheduler() {
+        this.emit('onStopSchedulerCommand');
+    }
+
     cmdCreateTasks (msg, match) {
-        let username = match[1],
-            expectedDate = new Date(match[2]).toISOString(),
-            description = match[8];
+        let task {
+            username: match[1],
+            expectedDate: new Date(match[2]),
+            description: match[8],
+            chat: msg.chat
+        };
 
-        let task = {
+        this.dbController.findChat(username).then((chat) => {
+            task.chat = chat;
+            this.dbController.saveTask(task);
+        });
+    }
 
-        }
-
+    sendTask (task) {
+        let message = `Time OUT\n
+                       Task: ${task.description}\n
+                       Assigned at: @${task.username}\n
+                       Complete time: ${task.expectedDate}`;
+        this.botApi.sendMessage(task.chat.id, message);
     }
  }
 
