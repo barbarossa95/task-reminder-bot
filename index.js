@@ -12,7 +12,7 @@ const port = process.env.PORT || 443;
 // Webhook url
 const url = process.env.APP_URL || 'https://glacial-shelf-62769.herokuapp.com';
 // Mongo db connection uri
-const mongoUri = mongoDbUriprocess.env.MONGODB_URI || "mongodb://heroku_q6tk00h5:kdl956cponc3b8al8fbt2kdc21@ds059546.mlab.com:59546/heroku_q6tk00h5";
+const mongoUri = process.env.MONGODB_URI || "mongodb://heroku_q6tk00h5:kdl956cponc3b8al8fbt2kdc21@ds059546.mlab.com:59546/heroku_q6tk00h5";
 // Mongo db name
 const dataBaseName = process.env.MONGODB_NAME || "heroku_q6tk00h5";
 
