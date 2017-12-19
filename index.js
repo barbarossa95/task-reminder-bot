@@ -6,6 +6,7 @@
  * Bot index file
  */
 
+console.log("Load env");
 const telegramBotToken = process.env.TELEGRAM_BOT_API_TOKEN || '425725110:AAGGCMmtY8jPzmB6hwsCNVvjT8m4Mt2nrBY';
 // Webhook port
 const port = process.env.PORT || 443;
@@ -15,6 +16,7 @@ const url = process.env.APP_URL || 'https://glacial-shelf-62769.herokuapp.com';
 const mongoUri = process.env.MONGODB_URI || "mongodb://heroku_q6tk00h5:kdl956cponc3b8al8fbt2kdc21@ds059546.mlab.com:59546/heroku_q6tk00h5";
 // Mongo db name
 const dataBaseName = process.env.MONGODB_NAME || "heroku_q6tk00h5";
+console.log("Loaded");
 
 const options = {
     telegramBotToken,
