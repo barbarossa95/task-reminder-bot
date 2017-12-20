@@ -35,9 +35,9 @@ class TaskReminderBot extends EventEmitter {
 
         this.botApi.onText(/\/start/, this.cmdStart.bind(this));
 
-        this.botApi.onText(/\/start-scheduler/, this.cmdStartScheduler.bind(this));
+        this.botApi.onText(/\/scheduler-start/, this.cmdStartScheduler.bind(this));
 
-        this.botApi.onText(/\/stop-scheduler/, this.cmdStopScheduler.bind(this));
+        this.botApi.onText(/\/scheduler-stop/, this.cmdStopScheduler.bind(this));
 
         this.botApi.onText(/\/chat-id/, this.cmdChatId.bind(this));
 
@@ -46,7 +46,7 @@ class TaskReminderBot extends EventEmitter {
 
     cmdStart (msg) {
         this.botApi.sendMessage(msg.chat.id, "Greetings, dude\nI'm here to help you");
-        this.dbController.saveChat(chat)
+        this.dbController.saveChat(msg.chat)
             .then(() => console.log("New chat"))
             .catch((err) => console.error(err));
     }
