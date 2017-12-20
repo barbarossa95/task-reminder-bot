@@ -39,7 +39,7 @@ class DbController {
                 if (err) reject(err);
                 const db = client.db(this.dataBaseName);
 
-                let chat = db.collection('chats').find({ username : username });
+                let chat = db.collection('chats').findOne({ username : username });
                 if (!chat) reject(null);
                 client.close();
                 resolve(chat);
