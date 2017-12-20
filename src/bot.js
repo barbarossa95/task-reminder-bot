@@ -68,7 +68,7 @@ class TaskReminderBot extends EventEmitter {
     cmdCreateTask (msg, match) {
         let task = {
             username: match[2].substr(1),
-            expectedDate: new Date(match[3]),
+            expectedDate: new Date(match[3]).toISOString(),
             description: match[9],
             chat: msg.chat
         };
@@ -76,7 +76,6 @@ class TaskReminderBot extends EventEmitter {
         this.dbController.findChat(task.username)
             .then((chat) => {
                 task.chat = chat;
-                console.log("finded chat",chat, task);
                 return this.dbController.saveTask(task);
             })
             .then(() => {
