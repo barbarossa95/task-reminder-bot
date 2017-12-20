@@ -74,7 +74,7 @@ class TaskReminderBot extends EventEmitter {
             chat: msg.chat
         };
 
-        this.dbController.findChat(username)
+        this.dbController.findChat(task.username)
             .then((chat) => {
                 task.chat = chat;
                 return this.dbController.saveTask(task);
