@@ -66,7 +66,7 @@ class TaskReminderBot extends EventEmitter {
     }
 
     cmdCreateTasks (msg, match) {
-        // console.log(match);
+        console.log(match);
         let task = {
             username: match[1].substr(1),
             expectedDate: new Date(match[2]),
