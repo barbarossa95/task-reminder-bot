@@ -35,13 +35,11 @@ class TaskReminderBot extends EventEmitter {
 
         this.botApi.onText(/\/start/, this.cmdStart.bind(this));
 
-        this.botApi.onText(/\/scheduler-start/, this.cmdStartScheduler.bind(this));
+        //this.botApi.onText(/\/schedulerstart/, this.cmdStartScheduler.bind(this));
 
-        this.botApi.onText(/\/scheduler-stop/, this.cmdStopScheduler.bind(this));
+        // this.botApi.onText(/\/schedulerstop/, this.cmdStopScheduler.bind(this));
 
-        this.botApi.onText(/\/chat-id/, this.cmdChatId.bind(this));
-
-        this.botApi.onText(/(\/create-task) (@\w{5,}) ((\d{2})\.(\d{2})\.(\d{4}) (\d{2}):(\d{2})) (.+)/, this.cmdCreateTask.bind(this));
+        this.botApi.onText(/(\/taskcreate) (@\w{5,}) ((\d{2})\.(\d{2})\.(\d{4}) (\d{2}):(\d{2})) (.+)/, this.cmdCreateTask.bind(this));
    }
 
     cmdStart (msg) {
