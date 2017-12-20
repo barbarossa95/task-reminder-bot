@@ -85,10 +85,7 @@ class TaskReminderBot extends EventEmitter {
     sendTask (task) {
         return new Promise((resolve, reject) => {
             if (!task.chat || !task.chat.id) reject(new Error("Unable to send task - chat is undefined"));
-            let message = `Time OUT\n
-                       Task: ${task.description}\n
-                       Assigned at: @${task.username}\n
-                       Complete time: ${task.expectedDate}`;
+            let message = `Time OUT\nTask: ${task.description}\nAssigned at: @${task.username}\nComplete time: ${task.expectedDate}`;
             this.botApi.sendMessage(task.chat.id, message);
             resolve();
         });
