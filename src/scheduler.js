@@ -18,7 +18,7 @@ class Scheduler {
     job () {
         this.dbController.getReadyTasks()
             .then((tasks) => {
-                console.log("Scheduler job running, tasks count: " + tasks.length)
+                console.log("Scheduler job, tasks count: " + tasks.length)
                 tasks.forEach((task) => {
                     this.botController.sendTask(task)
                     .then(() => this.dbController.remove(task))
