@@ -55,11 +55,13 @@ class TaskReminderBot extends EventEmitter {
         this.botApi.sendMessage(msg.chat.id, "Current chat_id is " + msg.chat.id);
     }
 
-    cmdStartScheduler() {
+    cmdStartScheduler(msg) {
+        this.botApi.sendMessage(msg.chat.id, "StartScheduler command is called");
         this.emit('onStartSchedulerCommand');
     }
 
     cmdStopScheduler() {
+        this.botApi.sendMessage(msg.chat.id, "StopScheduler command is called");
         this.emit('onStopSchedulerCommand');
     }
 
