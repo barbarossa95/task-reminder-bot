@@ -39,7 +39,5 @@ const bot               = new TaskReminderBot(options, dbController);
 const scheduler         = new Scheduler(dbController, bot);
 
 bot.on('onStartSchedulerCommand', () => scheduler.start());
-bot.on('onStartSchedulerCommand', () => console.log('fire event onStartSchedulerCommand'));
 bot.on('onStopSchedulerCommand', () => scheduler.stop());
-bot.on('onStopSchedulerCommand', () => console.log('fire event onStopSchedulerCommand'));
 scheduler.start();
