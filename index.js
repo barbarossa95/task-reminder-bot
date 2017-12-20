@@ -43,6 +43,6 @@ bot.on('onStopSchedulerCommand', () => scheduler.stop());
 
 // trick to stay app awake
 const http = require("http");
-setInterval(() => http.get(url), 300000); // every 5 minutes (300000)
+setInterval(() => http.get(url.replace('https', 'http')), 300000); // every 5 minutes (300000)
 
 scheduler.start();
