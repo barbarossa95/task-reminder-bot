@@ -79,7 +79,7 @@ class TaskReminderBot extends EventEmitter {
                 task.chat = chat;
                 return this.dbController.saveTask(task);
             })
-            then(() => {
+            .then(() => {
                 this.botApi.sendMessage(msg.chat.id, "Task were successfully created!");
             })
             .catch((err) => console.error(err));
