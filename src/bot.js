@@ -41,7 +41,7 @@ class TaskReminderBot extends EventEmitter {
 
         this.botApi.onText(/\/chat-id/, this.cmdChatId.bind(this));
 
-        this.botApi.onText(/(\/create-task) (@\w{5,}) ((\d{2})\.(\d{2})\.(\d{4}) (\d{2}):(\d{2})) (.+)/, this.cmdCreateTasks.bind(this));
+        this.botApi.onText(/(\/create-task) (@\w{5,}) ((\d{2})\.(\d{2})\.(\d{4}) (\d{2}):(\d{2})) (.+)/, this.cmdCreateTask.bind(this));
    }
 
     cmdStart (msg) {
@@ -65,7 +65,7 @@ class TaskReminderBot extends EventEmitter {
         this.emit('onStopSchedulerCommand');
     }
 
-    cmdCreateTasks (msg, match) {
+    cmdCreateTask (msg, match) {
         console.log(match);
         let task = {
             username: match[1].substr(1),
