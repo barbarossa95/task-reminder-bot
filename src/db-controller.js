@@ -66,9 +66,12 @@ class DbController {
             this.MongoClient.connect(this.mongoDbUri, (err, client) => {
                 if (err) reject(err);
                 const db = client.db(this.dataBaseName);
+                let timezone = process.env.TIME_ZONE || '+6';
+                let currentDate = new Date();
+                currentDate.setHours(currentDate.getHours + (timezone * 1));
 
                 let tasks = db.collection('tasks')
-                    .find({ expectedDate : { $lte : new Date().toISOString() }}).toArray();
+                    .find({ expectedDate : { $lte : currentDate.toISOString() }}).toArray();
                 client.close();
                 resolve(tasks);
             });
