@@ -60,7 +60,7 @@ class TaskReminderBot extends EventEmitter {
         this.emit('onStartSchedulerCommand');
     }
 
-    cmdStopScheduler() {
+    cmdStopScheduler(msg) {
         this.botApi.sendMessage(msg.chat.id, "StopScheduler command is called");
         this.emit('onStopSchedulerCommand');
     }
