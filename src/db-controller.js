@@ -1,5 +1,5 @@
 /**
- * task-controller.js
+ * db-controller.js
  *
  * Created by V.Greshilov at 18.12.2017
  *
