@@ -68,7 +68,7 @@ class DbController {
                 const db = client.db(this.dataBaseName);
 
                 let tasks = db.collection('tasks')
-                    .find({ expectedDate : { $gte : new Date().toISOString() }}).toArray();
+                    .find({ expectedDate : { $gte : new Date() }}).toArray();
                 client.close();
                 resolve(tasks);
             });
