@@ -11,7 +11,7 @@ const telegramBotToken = process.env.TELEGRAM_BOT_API_TOKEN || '425725110:AAGGCM
 // Webhook port
 const port = process.env.PORT || 443;
 // Webhook url
-const url = process.env.APP_URL || 'https://glacial-shelf-62769.herokuapp.com';
+const url = process.env.APP_URL || 'https://task-reminder-bot.herokuapp.com';
 // Mongo db connection uri
 const mongoUri = process.env.MONGODB_URI || "mongodb://heroku_q6tk00h5:kdl956cponc3b8al8fbt2kdc21@ds059546.mlab.com:59546/heroku_q6tk00h5";
 // Mongo db name
@@ -40,4 +40,9 @@ const scheduler         = new Scheduler(dbController, bot);
 
 bot.on('onStartSchedulerCommand', () => scheduler.start());
 bot.on('onStopSchedulerCommand', () => scheduler.stop());
+
+// trick to stay app awake
+const http = require("http");
+setInterval(() => http.get(url), 300000); // every 5 minutes (300000)
+
 scheduler.start();
