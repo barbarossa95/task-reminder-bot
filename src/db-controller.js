@@ -68,7 +68,7 @@ class DbController {
                 const db = client.db(this.dataBaseName);
                 let timezone = process.env.TIME_ZONE || '+6';
                 let currentDate = new Date();
-                currentDate.setHours(currentDate.getHours + (timezone * 1));
+                currentDate.setHours(currentDate.getHours() + (timezone * 1));
 
                 let tasks = db.collection('tasks')
                     .find({ expectedDate : { $lte : currentDate.toISOString() }}).toArray();
